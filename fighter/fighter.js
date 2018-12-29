@@ -23,10 +23,17 @@ function attack(atkr) {
   const target = atkr === 'player' ? enemy : player
   const bar = atkr === 'player' ? $('#enemyHealthBar') : $('#playerHealthBar')
 
+  // if atkr === 'enemy' call a function that randomly selects one of the moves in the array.
+  // call that move
+
   const damage = attacker.attack - target.defense
   return $(bar).is(':animated') && target.health
     ? ''
     : reduceHealthBar(damage, target, bar)
+}
+
+function randomlySelectMove() {
+  return enemy.moves[Math.floor(Math.random() * (enemy.moves.length - 1))]
 }
 
 function reduceHealthBar(damage, target, bar) {
